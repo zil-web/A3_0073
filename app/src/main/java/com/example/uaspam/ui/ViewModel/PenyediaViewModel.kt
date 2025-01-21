@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.uaspam.tokoApplication
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
@@ -16,5 +17,5 @@ object PenyediaViewModel {
     }
 }
 
-fun CreationExtras.prdkApp(): ProdukApplication =
-    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]as ProdukApplication)
+fun CreationExtras.prdkApp(): tokoApplication =
+    (this[ViewModelProvider.AndroidViewModelFactory.APPLICATION_KEY]as tokoApplication)
