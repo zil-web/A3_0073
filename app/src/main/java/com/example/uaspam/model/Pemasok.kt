@@ -1,5 +1,8 @@
 package com.example.uaspam.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Pemasok (
     val id_pemasok: String,
     val nama_produk: String,
