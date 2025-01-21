@@ -1,5 +1,7 @@
 package com.example.uaspam.model
 
+import kotlinx.serialization.Serializable
+
 
 @Serializable
 data class Produk (
