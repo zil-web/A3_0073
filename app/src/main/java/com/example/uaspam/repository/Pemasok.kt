@@ -7,12 +7,12 @@ import java.io.IOException
 interface PemasokRepository {
     suspend fun getPemasok(): List<Pemasok>
     suspend fun insertPemasok(pemasok: Pemasok)
-    suspend fun updatePemasok(id_pemasok: String, mahasiswa: Pemasok)
+    suspend fun updatePemasok(id_pemasok: String, pemasok: Pemasok)
     suspend fun deletePemasok(id_pemasok: String)
     suspend fun getPemasokByid_pemasok(id_pemasok: String): Pemasok
 }
 
-class NetworkMahasiswaRepository(
+class NetworkPemasokRepository(
     private val pemasokApiService: PemasokService
 ):PemasokRepository{
 
@@ -35,7 +35,7 @@ class NetworkMahasiswaRepository(
         try {
             val response = pemasokApiService.deletePemasok(id_pemasok)
             if(!response.isSuccessful){
-                throw IOException("Failed to delete mahasiswa. HTTP Status Code:" +
+                throw IOException("Failed to delete pemasok. HTTP Status Code:" +
                         "${response.code()}")
             } else{
                 response.message()
