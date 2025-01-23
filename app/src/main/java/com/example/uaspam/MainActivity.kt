@@ -11,6 +11,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.uaspam.ui.Navigation.PengelolaHalaman
+import com.example.uaspam.ui.ViewModel.produkApp
 import com.example.uaspam.ui.theme.UaspamTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,8 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             UaspamTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
+                    produkApp(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

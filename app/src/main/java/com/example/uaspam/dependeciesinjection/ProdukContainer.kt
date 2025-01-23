@@ -1,7 +1,7 @@
 package com.example.uaspam.model
 
 
-import com.example.uaspam.repository.NetworkProdukRepository
+import com.example.uaspam.repository.NetworkprodukRepository
 import com.example.uaspam.repository.ProdukRepository
 import com.example.uaspam.service_api.ProdukService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -14,7 +14,7 @@ interface AppContainer{
 }
 
 class ProdukContainer: AppContainer{
-    private val baseUrl = "http://10.0.2.2:8000/umyTI/"
+    private val baseUrl = "http://10.0.2.2:3000/api/produk/"
     private val json = Json{ignoreUnknownKeys = true}
     private val retrofit: Retrofit = Retrofit.Builder()
         .addConverterFactory(json.asConverterFactory ("application/json".toMediaType()))
@@ -25,6 +25,6 @@ class ProdukContainer: AppContainer{
 
 
     override val produkRepository: ProdukRepository by lazy {
-        NetworkProdukRepository(produkService)
+        NetworkprodukRepository(produkService)
     }
 }

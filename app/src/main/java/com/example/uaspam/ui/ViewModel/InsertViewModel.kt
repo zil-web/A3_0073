@@ -17,10 +17,11 @@ class InsertViewModel(private val prdk: ProdukRepository): ViewModel() {
         uiState = InsertUiState(insertUiEvent)
     }
 
+
     suspend fun insertprdk(){
         viewModelScope.launch {
             try {
-                prdk.insertProduk(uiState.insertUiEvent.toprdk())
+                prdk.insertproduk(uiState.insertUiEvent.toprdk())
             }catch (e: Exception){
                 e.printStackTrace()
             }
@@ -32,13 +33,14 @@ fun InsertUiEvent.toprdk(): Produk = Produk(
     id_produk = id_produk,
     nama_produk = nama_produk,
     deskripsi_produk = deskripsi_produk,
-    stok = stok,
+    harga = harga ?: 0,
+    stok = stok ?: 0,
     id_kategori = id_kategori,
     id_pemasok = id_pemasok,
     id_merk = id_merk,
 )
 
-fun Produk.toUiStateprdk(): InsertUiState = InsertUiState(
+fun Produk.toUiState(): InsertUiState = InsertUiState(
     insertUiEvent = toInsertUiEvent()
 )
 
@@ -46,10 +48,12 @@ fun Produk.toInsertUiEvent(): InsertUiEvent = InsertUiEvent(
     id_produk = id_produk,
     nama_produk = nama_produk,
     deskripsi_produk = deskripsi_produk,
+    harga = harga,
     stok = stok,
     id_kategori = id_kategori,
     id_pemasok = id_pemasok,
     id_merk = id_merk,
+
 )
 
 data class InsertUiState(
@@ -60,9 +64,13 @@ data class InsertUiEvent(
     val id_produk: String = "",
     val nama_produk: String = "",
     val deskripsi_produk: String = "",
-    val stok: String = "",
+    val harga:Int? = null,
+    val stok: Int? = null,
     val id_kategori: String = "",
     val id_pemasok: String = "",
     val id_merk: String = "",
 
     )
+
+
+

@@ -29,7 +29,7 @@ class HomeViewModel(private val prdk: ProdukRepository): ViewModel(){
         viewModelScope.launch {
             prdkUiState = HomeUiState.Loading
             prdkUiState = try {
-                HomeUiState.Success(prdk.getProduk())
+                HomeUiState.Success(prdk.getproduk().data)
             } catch (e: IOException) {
                 HomeUiState.Error
             }catch (e: HttpException) {
@@ -41,7 +41,7 @@ class HomeViewModel(private val prdk: ProdukRepository): ViewModel(){
     fun deleteprdk(id_produk: String){
         viewModelScope.launch {
             try {
-                prdk.deleteProduk(id_produk)
+                prdk.deleteproduk(id_produk)
             }catch (e: Exception){
                 HomeUiState.Error
             }catch (e: HttpException) {
