@@ -52,7 +52,7 @@ object DestinasiEntryKategori: DestinasiNavigasi{
     override val titleRes= "Entryktgr"
 }
 
-object DestinasiUpdatektgr: DestinasiNavigasi{
+object DestinasiUpdateKategori: DestinasiNavigasi{
     override val route = "updatektgr"
     override val titleRes = "Updatektgr"
     const val ID_kategori = "idkategori"

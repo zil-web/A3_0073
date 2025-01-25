@@ -13,12 +13,12 @@ data class Kategori (
 data class kategoriResponse(
     val status: Boolean,
     val message: String,
-    val data: List<Pemasok>
+    val data: List<Kategori>
 )
 
 @Serializable
 data class kategoriResponseDetail(
     val status: Boolean,
     val message: String,
-    val data: Pemasok
+    val data: Kategori
 )
