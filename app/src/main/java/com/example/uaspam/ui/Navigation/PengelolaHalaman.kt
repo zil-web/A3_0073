@@ -8,15 +8,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.uaspam.ui.View.DestinasiDetail
-import com.example.uaspam.ui.View.DestinasiEntry
-import com.example.uaspam.ui.View.DestinasiHome
-import com.example.uaspam.ui.View.DestinasiUpdate
 import com.example.uaspam.ui.View.DetailScreen
 import com.example.uaspam.ui.View.EntryprdkScreen
 import com.example.uaspam.ui.View.HomeScreen
+import com.example.uaspam.ui.View.HomeScreenPemasok
 import com.example.uaspam.ui.View.UpdateScreen
-
 
 @Composable
 fun PengelolaHalaman(
@@ -34,7 +30,13 @@ fun PengelolaHalaman(
                 navigateToItemEntry = { navController.navigate(DestinasiEntry.route)},
                 onDetailClick = { id_produk ->
                     navController.navigate("${DestinasiDetail.route}/$id_produk")
+                },
+                onNavigateToPemasok = { navController.navigate(DestinasiHomePemasok.route)
+                },
+                onNavigateToKategori = {
+
                 }
+
             )
         }
         composable(
@@ -93,5 +95,32 @@ fun PengelolaHalaman(
             }
         }
 
+        composable(
+            DestinasiEntry.route
+        ) {
+            EntryprdkScreen(
+                navigateBack = {
+                    navController.navigate(DestinasiHome.route) {
+                        popUpTo(DestinasiHome.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
+        }
+        composable(
+            DestinasiHomePemasok.route
+        ) {
+            HomeScreenPemasok(
+                navigateToItemEntry = { navController.navigate(DestinasiEntryPemasok.route) },
+                onDetailClick = { id_pemasok ->
+                    navController.navigate("${DestinasiDetailPemasok.route}/$id_pemasok")
+                }
+            )
+        }
+
+
     }
-    }
+
+}
+

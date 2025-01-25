@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uaspam.model.produkResponseDetail
 import com.example.uaspam.repository.ProdukRepository
-import com.example.uaspam.ui.View.DestinasiDetail
+import com.example.uaspam.ui.Navigation.DestinasiDetail
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

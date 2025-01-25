@@ -23,6 +23,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.ui.Customwidget.CustomTopAppBar
+import com.example.uaspam.ui.Navigation.DestinasiEntry
 import com.example.uaspam.ui.Navigation.DestinasiNavigasi
 import com.example.uaspam.ui.ViewModel.InsertUiEvent
 import com.example.uaspam.ui.ViewModel.InsertUiState
@@ -30,10 +31,7 @@ import com.example.uaspam.ui.ViewModel.InsertViewModel
 import com.example.uaspam.ui.ViewModel.PenyediaViewModel
 import kotlinx.coroutines.launch
 
-object DestinasiEntry: DestinasiNavigasi {
-    override val route = "item_entry"
-    override val titleRes= "Entry prdk"
-}
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

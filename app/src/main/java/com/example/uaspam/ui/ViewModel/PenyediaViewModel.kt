@@ -13,6 +13,10 @@ object PenyediaViewModel {
         initializer { InsertViewModel(prdkApp().container.produkRepository) }
         initializer { DetailViewModel(createSavedStateHandle(),prdkApp().container.produkRepository)}
         initializer { UpdateViewModel(createSavedStateHandle(),prdkApp().container.produkRepository)}
+        initializer { HomeViewModelPemasok(prdkApp().container.pemasokRepository) }
+        initializer { InsertViewModelPemasok(prdkApp().container.pemasokRepository) }
+        initializer { DetailViewModelPemasok(createSavedStateHandle(),prdkApp().container.pemasokRepository)}
+        initializer { UpdateViewModelPemasok(createSavedStateHandle(),prdkApp().container.pemasokRepository)}
     }
 }
 

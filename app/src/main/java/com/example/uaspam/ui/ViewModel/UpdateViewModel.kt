@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uaspam.model.Produk
 import com.example.uaspam.repository.ProdukRepository
-import com.example.uaspam.ui.View.DestinasiUpdate
+import com.example.uaspam.ui.Navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
