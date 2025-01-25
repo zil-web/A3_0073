@@ -36,7 +36,7 @@ fun InsertUiEvent.toprdk(): Produk = Produk(
     harga = harga ?: 0,
     stok = stok ?: 0,
     id_kategori = id_kategori,
-    id_pemasok = id_pemasok,
+    id_pemasok = id_pemasok ?: 0,
     id_merk = id_merk,
 )
 
@@ -67,7 +67,7 @@ data class InsertUiEvent(
     val harga:Int? = null,
     val stok: Int? = null,
     val id_kategori: String = "",
-    val id_pemasok: String = "",
+    val id_pemasok: Int? = null,
     val id_merk: String = "",
 
     )

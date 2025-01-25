@@ -8,3 +8,17 @@ data class Kategori (
     val nama_kategori: String,
     val deskripsi_kategori: String,
 )
+
+@Serializable
+data class kategoriResponse(
+    val status: Boolean,
+    val message: String,
+    val data: List<Pemasok>
+)
+
+@Serializable
+data class kategoriResponseDetail(
+    val status: Boolean,
+    val message: String,
+    val data: Pemasok
+)

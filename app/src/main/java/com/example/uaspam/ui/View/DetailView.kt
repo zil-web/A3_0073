@@ -133,7 +133,7 @@ fun ItemDetailprdk(
             ComponentDetailMhs(judul = "harga", isinya = produk.harga.toString())
             ComponentDetailMhs(judul = "stok", isinya = produk.stok.toString())
             ComponentDetailMhs(judul = "id_kategori", isinya = produk.id_kategori)
-            ComponentDetailMhs(judul = "id_pemasok", isinya = produk.id_pemasok)
+            ComponentDetailMhs(judul = "id_pemasok", isinya = produk.id_pemasok.toString())
             ComponentDetailMhs(judul = "id_merk", isinya = produk.id_merk)
 
         }

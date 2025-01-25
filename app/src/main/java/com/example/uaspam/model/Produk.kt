@@ -11,7 +11,7 @@ data class Produk (
     val harga: Int,
     val stok: Int,
     val id_kategori: String,
-    val id_pemasok: String,
+    val id_pemasok: Int,
     val id_merk: String,
 )
 

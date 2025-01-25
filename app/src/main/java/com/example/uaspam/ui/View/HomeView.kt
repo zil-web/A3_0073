@@ -248,7 +248,7 @@ fun PrdkCard(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = produk.id_produk,
+                    text = produk.nama_produk,
                     style = MaterialTheme.typography.titleLarge,
                 )
                 Spacer(Modifier.weight(1f))
@@ -264,19 +264,19 @@ fun PrdkCard(
                 )
             }
             Text(
-                text = produk.id_merk,
+                text = produk.harga.toString(),
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = produk.id_pemasok    ,
+                text = produk.stok.toString() ,
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = produk.id_kategori    ,
+                text = produk.id_pemasok.toString(),
                 style = MaterialTheme.typography.titleMedium
             )
             Text(
-                text = produk.nama_produk    ,
+                text = produk.id_merk    ,
                 style = MaterialTheme.typography.titleMedium
             )
         }
