@@ -31,10 +31,36 @@ object DestinasiUpdate : DestinasiNavigasi {
     val routesWithArg = "$route/{$ID_produk}"
 }
 
-// pemasok
+// kategori
 
 
 
+object DestinasiDetailKategori: DestinasiNavigasi {
+    override val route = "detail_kategori"
+    override val titleRes = "Detailktgr"
+    const val ID_kategori = "idkategori"
+    val routesWithArg = "$route/{$ID_kategori}"
+}
+
+object DestinasiHomeKategori: DestinasiNavigasi {
+    override val route = "homektgr"
+    override val titleRes= "Homektgr"
+}
+
+object DestinasiEntryKategori: DestinasiNavigasi{
+    override val route = "item_entryktgr"
+    override val titleRes= "Entryktgr"
+}
+
+object DestinasiUpdatektgr: DestinasiNavigasi{
+    override val route = "updatektgr"
+    override val titleRes = "Updatektgr"
+    const val ID_kategori = "idkategori"
+    val routesWithArg = "$route/{$ID_kategori}"
+}
+
+
+//pemasok
 object DestinasiDetailPemasok: DestinasiNavigasi {
     override val route = "detail_pemasok"
     override val titleRes = "DetailPmsk"
