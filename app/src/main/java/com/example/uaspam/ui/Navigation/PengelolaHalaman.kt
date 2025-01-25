@@ -13,6 +13,7 @@ import com.example.uaspam.ui.View.EntryprdkScreen
 import com.example.uaspam.ui.View.HomeScreen
 import com.example.uaspam.ui.View.HomeScreenPemasok
 import com.example.uaspam.ui.View.UpdateScreen
+import com.example.uaspam.ui.ViewKategori.HomeScreenKategori
 
 @Composable
 fun PengelolaHalaman(
@@ -33,7 +34,7 @@ fun PengelolaHalaman(
                 },
                 onNavigateToPemasok = { navController.navigate(DestinasiHomePemasok.route)
                 },
-                onNavigateToKategori = {
+                onNavigateToKategori = { navController.navigate(DestinasiHomeKategori.route)
 
                 }
 
@@ -118,7 +119,16 @@ fun PengelolaHalaman(
                 }
             )
         }
-
+        composable(
+            DestinasiHomeKategori.route
+        ) {
+            HomeScreenKategori(
+                navigateToItemEntry = { navController.navigate(DestinasiEntryKategori.route) },
+                onDetailClick = { id_kategori ->
+                    navController.navigate("${DestinasiDetailKategori.route}/$id_kategori")
+                }
+            )
+        }
 
     }
 
