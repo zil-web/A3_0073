@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
@@ -44,13 +45,9 @@ import com.example.uaspam.R
 import com.example.uaspam.model.Produk
 import com.example.uaspam.ui.Customwidget.CustomTopAppBar
 import com.example.uaspam.ui.Navigation.DestinasiHome
-
 import com.example.uaspam.ui.ViewModel.HomeUiState
 import com.example.uaspam.ui.ViewModel.HomeViewModel
 import com.example.uaspam.ui.ViewModel.PenyediaViewModel
-
-
-
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -231,51 +228,68 @@ fun PrdkCard(
     Card(
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
     ) {
-        Column (
+        Column(
             modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Row (
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Text(
                     text = produk.nama_produk,
-                    style = MaterialTheme.typography.titleLarge,
+                    style = MaterialTheme.typography.titleLarge
                 )
                 Spacer(Modifier.weight(1f))
                 IconButton(onClick = { showDialog = true }) {
                     Icon(
                         imageVector = Icons.Default.Delete,
-                        contentDescription = null,
+                        contentDescription = "Hapus Produk"
                     )
                 }
+            }
+
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
                     text = produk.deskripsi_produk,
-                    style = MaterialTheme.typography.titleMedium
+                    style = MaterialTheme.typography.bodyMedium,
+                    modifier = Modifier.weight(1f)
                 )
+                Icon(
+                    imageVector = Icons.Default.ShoppingCart, // Ikon keranjang bawaan
+                    contentDescription = "Keranjang",
+                    modifier = Modifier.size(24.dp)
+                )
+
             }
+
             Text(
-                text = produk.harga.toString(),
-                style = MaterialTheme.typography.titleMedium
+                text = "Harga: Rp${produk.harga}",
+                style = MaterialTheme.typography.bodyMedium
             )
             Text(
-                text = produk.stok.toString() ,
-                style = MaterialTheme.typography.titleMedium
+                text = "Stok: ${produk.stok}",
+                style = MaterialTheme.typography.bodyMedium
             )
             Text(
-                text = produk.id_pemasok.toString(),
-                style = MaterialTheme.typography.titleMedium
+                text = "Pemasok: ${produk.id_pemasok}",
+                style = MaterialTheme.typography.bodySmall
             )
             Text(
-                text = produk.id_merk    ,
-                style = MaterialTheme.typography.titleMedium
+                text = "Merek: ${produk.id_merk}",
+                style = MaterialTheme.typography.bodySmall
             )
         }
     }
 }
+
 
 
 @Composable

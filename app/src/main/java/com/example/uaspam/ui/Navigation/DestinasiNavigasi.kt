@@ -37,14 +37,14 @@ object DestinasiUpdate : DestinasiNavigasi {
 
 object DestinasiDetailKategori: DestinasiNavigasi {
     override val route = "detail_kategori"
-    override val titleRes = "Detailktgr"
+    override val titleRes = "Detailkategori"
     const val ID_kategori = "idkategori"
     val routesWithArg = "$route/{$ID_kategori}"
 }
 
 object DestinasiHomeKategori: DestinasiNavigasi {
-    override val route = "homektgr"
-    override val titleRes= "Homektgr"
+    override val route = "homeKategori"
+    override val titleRes= "HomeKategori"
 }
 
 object DestinasiEntryKategori: DestinasiNavigasi{
@@ -69,8 +69,8 @@ object DestinasiDetailPemasok: DestinasiNavigasi {
 }
 
 object DestinasiHomePemasok: DestinasiNavigasi {
-    override val route = "homepmsk"
-    override val titleRes= "Homepmsk"
+    override val route = "homePemasok"
+    override val titleRes= "HomePemasok"
 }
 
 object DestinasiEntryPemasok: DestinasiNavigasi{

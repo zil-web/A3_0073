@@ -1,17 +1,44 @@
 package com.example.uaspam.ui.ViewModel
 
+import PemasokRepository
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uaspam.model.Produk
+import com.example.uaspam.repository.KategoriRepository
 import com.example.uaspam.repository.ProdukRepository
 import kotlinx.coroutines.launch
 
-class InsertViewModel(private val prdk: ProdukRepository): ViewModel() {
+class InsertViewModel(
+
+    private val prdk: ProdukRepository,
+    private val pmsk: PemasokRepository,
+    private val ktg: KategoriRepository,
+
+    ): ViewModel() {
     var uiState by mutableStateOf(InsertUiState())
         private set
+
+    var pmskList by mutableStateOf<List<pemasok>>(emptyList())
+    var prdkList by mutableStateOf<List<produk>>(emptyList())
+
+    init {
+        //memuat data
+        simpandata()
+    }
+
+    private fun simpandata() {
+        viewModelScope.launch {
+            try {
+                pmskList = pmsk.getpemasok().data
+                prdkList = prdk.getproduk().data
+            } catch (e: Exception) {
+
+            }
+            }
+        }
 
     fun updateInsertprdkState(insertUiEvent: InsertUiEvent){
         uiState = InsertUiState(insertUiEvent)
