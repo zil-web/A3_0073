@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Merk (
-    val id_merk: String,
+    val id_merk: Int,
     val nama_merk: String,
     val deskripsi_merk: String,
 )
