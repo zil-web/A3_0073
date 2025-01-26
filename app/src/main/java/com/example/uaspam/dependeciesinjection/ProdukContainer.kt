@@ -4,10 +4,13 @@ package com.example.uaspam.model
 import NetworkpemasokRepository
 import PemasokRepository
 import com.example.uaspam.repository.KategoriRepository
+import com.example.uaspam.repository.MerkRepository
 import com.example.uaspam.repository.NetworkkategoriRepository
+import com.example.uaspam.repository.NetworkmerkRepository
 import com.example.uaspam.repository.NetworkprodukRepository
 import com.example.uaspam.repository.ProdukRepository
 import com.example.uaspam.service_api.KategoriService
+import com.example.uaspam.service_api.MerkService
 import com.example.uaspam.service_api.PemasokService
 import com.example.uaspam.service_api.ProdukService
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -20,6 +23,7 @@ interface AppContainer {
     val produkRepository : ProdukRepository
     val pemasokRepository : PemasokRepository
     val kategoriRepository : KategoriRepository
+    val merkRepository : MerkRepository
 }
 
 class ProdukContainer : AppContainer {
@@ -29,6 +33,7 @@ class ProdukContainer : AppContainer {
     private val baseUrlproduk = "http://10.0.2.2:3000/api/produk/"
     private val baseUrlpemasok = "http://10.0.2.2:3000/api/pemasok/"
     private val baseUrlkategori = "http://10.0.2.2:3000/api/kategori/"
+    private val baseUrlmerk = "http://10.0.2.2:3000/api/merk/"
 
 
     private val retrofitproduk: Retrofit = Retrofit.Builder()
@@ -44,6 +49,11 @@ class ProdukContainer : AppContainer {
     private val retrofitkategori: Retrofit = Retrofit.Builder()
         .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
         .baseUrl(baseUrlkategori)
+        .build()
+
+    private val retrofitmerk: Retrofit = Retrofit.Builder()
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .baseUrl(baseUrlmerk)
         .build()
 
 
@@ -71,5 +81,13 @@ class ProdukContainer : AppContainer {
     }
     override val kategoriRepository: KategoriRepository by lazy {
         NetworkkategoriRepository(kategoriService)
+    }
+
+
+    private val merkService: MerkService by lazy {
+        retrofitmerk.create(MerkService::class.java) // Nama benar
+    }
+    override val merkRepository: MerkRepository by lazy {
+        NetworkmerkRepository(merkService)
     }
 }

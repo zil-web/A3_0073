@@ -15,14 +15,14 @@ class InsertViewModel(
 
     private val prdk: ProdukRepository,
     private val pmsk: PemasokRepository,
-    private val ktg: KategoriRepository,
+    private val ktgr: KategoriRepository,
 
     ): ViewModel() {
     var uiState by mutableStateOf(InsertUiState())
         private set
 
     var pmskList by mutableStateOf<List<pemasok>>(emptyList())
-    var prdkList by mutableStateOf<List<produk>>(emptyList())
+    var ktgrList by mutableStateOf<List<kategori>>(emptyList())
 
     init {
         //memuat data
@@ -33,7 +33,7 @@ class InsertViewModel(
         viewModelScope.launch {
             try {
                 pmskList = pmsk.getpemasok().data
-                prdkList = prdk.getproduk().data
+                ktgrList = ktgr.getkategori().data
             } catch (e: Exception) {
 
             }

@@ -8,3 +8,17 @@ data class Merk (
     val nama_merk: String,
     val deskripsi_merk: String,
 )
+
+@Serializable
+data class merkResponse(
+    val status: Boolean,
+    val message: String,
+    val data: List<Kategori>
+)
+
+@Serializable
+data class merkResponseDetail(
+    val status: Boolean,
+    val message: String,
+    val data: Kategori
+)
