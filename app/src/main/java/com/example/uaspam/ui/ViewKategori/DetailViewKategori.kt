@@ -81,7 +81,7 @@ fun DetailStatusKategori(
         is DetailUiStateKategori.Loading -> OnloadingKategori(modifier = modifier.fillMaxSize())
 
         is DetailUiStateKategori.Success -> {
-            if (detailUiStateKategori.kategori.data.id_kategori.isNotEmpty()) {
+            if (detailUiStateKategori.kategori.data.id_kategori == 0) {
                 Box(
                     modifier = modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
