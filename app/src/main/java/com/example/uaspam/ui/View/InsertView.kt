@@ -9,6 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -21,7 +22,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.uaspam.model.Kategori
+import com.example.uaspam.model.Merk
+import com.example.uaspam.model.Pemasok
 import com.example.uaspam.ui.Customwidget.CustomTopAppBar
+import com.example.uaspam.ui.Customwidget.Dropdown
 import com.example.uaspam.ui.Navigation.DestinasiEntry
 import com.example.uaspam.ui.ViewModel.InsertUiEvent
 import com.example.uaspam.ui.ViewModel.InsertUiState
@@ -55,6 +60,9 @@ fun EntryprdkScreen(
         EntryBody(
             insertUiState = viewModel.uiState,
             onSiswaValueChange = viewModel::updateInsertprdkState,
+            pmskList = viewModel.pmskList,
+            ktgrList = viewModel.ktgrList,
+            mrkList = viewModel.mrkList,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.insertprdk()
@@ -74,7 +82,10 @@ fun EntryBody(
     insertUiState: InsertUiState,
     onSiswaValueChange: (InsertUiEvent) -> Unit,
     onSaveClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    pmskList: List<Pemasok>,
+    ktgrList: List<Kategori>,
+    mrkList: List<Merk>
 ){
   Column (
       verticalArrangement = Arrangement.spacedBy(2.dp),
@@ -83,7 +94,11 @@ fun EntryBody(
       FormInput(
           insertUiEvent = insertUiState.insertUiEvent,
           onValueChange = onSiswaValueChange,
-          modifier = Modifier.fillMaxWidth()
+          insertUiState = insertUiState,
+          modifier = Modifier.fillMaxWidth(),
+          pmskList = pmskList,
+          ktgrList = ktgrList,
+          mrkList = mrkList
       )
       Button(onClick = onSaveClick,
           shape = MaterialTheme.shapes.small,
@@ -102,6 +117,10 @@ fun FormInput(
     modifier: Modifier = Modifier,
     onValueChange: (InsertUiEvent) -> Unit = {},
     enabled: Boolean = true,
+    insertUiState: InsertUiState,
+    pmskList: List<Pemasok>,
+    ktgrList: List<Kategori>,
+    mrkList: List<Merk>
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -122,14 +141,7 @@ fun FormInput(
                 enabled = enabled,
                 singleLine = true
             )
-            OutlinedTextField(
-                value = insertUiEvent.id_produk,
-                onValueChange = { onValueChange(insertUiEvent.copy(id_produk = it)) },
-                label = { Text(text = "ID Produk") },
-                modifier = Modifier.fillMaxWidth(),
-                enabled = enabled,
-                singleLine = true
-            )
+
             OutlinedTextField(
                 value = insertUiEvent.deskripsi_produk,
                 onValueChange = { onValueChange(insertUiEvent.copy(deskripsi_produk = it)) },
@@ -163,30 +175,43 @@ fun FormInput(
                 enabled = enabled,
                 singleLine = true
             )
-            OutlinedTextField(
-                value = insertUiEvent.id_kategori,
-                onValueChange = { onValueChange(insertUiEvent.copy(id_kategori = it)) },
-                label = { Text(text = "ID Kategori") },
-                modifier = Modifier.fillMaxWidth(),
-                enabled = enabled,
-                singleLine = true
+
+            Dropdown(
+                // untuk memanggil sesui  forenkey
+                selectedValue = pmskList.find { it.id_pemasok == insertUiState.insertUiEvent.id_pemasok }?.nama_pemasok ?: "",
+                options = pmskList.map { it.nama_pemasok },
+                label = "Pemasok",
+                onValueChangedEvent = {id_pemasok ->
+                val selectedPemasok = pmskList.find { it.nama_pemasok == id_pemasok }
+                    selectedPemasok?.let {
+                        onValueChange(insertUiEvent.copy(id_pemasok = it.id_pemasok)) }
+                }
             )
-            OutlinedTextField(
-                value = insertUiEvent.id_pemasok?.toString() ?: "",
-                onValueChange = { onValueChange(insertUiEvent.copy(id_pemasok= it.toIntOrNull())) },
-                label = { Text(text = "ID Pemasok") },
-                modifier = Modifier.fillMaxWidth(),
-                enabled = enabled,
-                singleLine = true
+
+            Dropdown(
+                // untuk memanggil sesui  forenkey
+                selectedValue = ktgrList.find { it.id_kategori== insertUiState.insertUiEvent.id_kategori }?.nama_kategori ?: "",
+                options = ktgrList.map { it.nama_kategori },
+                label = "kategori",
+                onValueChangedEvent = {id_kategori->
+                    val selectedKategori = ktgrList.find { it.nama_kategori == id_kategori}
+                    selectedKategori?.let {
+                        onValueChange(insertUiEvent.copy(id_pemasok = it.id_kategori)) }
+                }
             )
-            OutlinedTextField(
-                value = insertUiEvent.id_merk,
-                onValueChange = { onValueChange(insertUiEvent.copy(id_merk = it)) },
-                label = { Text(text = "ID Merk") },
-                modifier = Modifier.fillMaxWidth(),
-                enabled = enabled,
-                singleLine = true
+
+            Dropdown(
+                // untuk memanggil sesui  forenkey
+                selectedValue = mrkList.find { it.id_merk== insertUiState.insertUiEvent.id_merk }?.nama_merk ?: "",
+                options = mrkList.map { it.nama_merk },
+                label = "merk",
+                onValueChangedEvent = {id_merk ->
+                    val selectedMerk = mrkList.find { it.nama_merk == id_merk }
+                    selectedMerk?.let {
+                        onValueChange(insertUiEvent.copy(id_merk= it.id_merk)) }
+                }
             )
+
         }
     }
 

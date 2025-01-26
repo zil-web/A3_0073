@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uaspam.model.merkResponseDetail
 import com.example.uaspam.repository.MerkRepository
+import com.example.uaspam.ui.Navigation.DestinasiDetailMerk
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException

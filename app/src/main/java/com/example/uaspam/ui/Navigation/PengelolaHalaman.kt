@@ -42,6 +42,8 @@ fun PengelolaHalaman(
                 onNavigateToKategori = { navController.navigate(DestinasiHomeKategori.route)
 
                 }
+                , onNavigateToMerk = { navController.navigate(DestinasiHomeMerk.route)
+                }
 
             )
         }

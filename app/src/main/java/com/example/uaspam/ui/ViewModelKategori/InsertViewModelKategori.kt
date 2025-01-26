@@ -30,7 +30,7 @@ class InsertViewModelKategori(private val ktgr: KategoriRepository): ViewModel()
 }
 
 fun InsertUiEventKategori.toktgr(): Kategori = Kategori(
-    id_kategori = id_kategori,
+    id_kategori = id_kategori ?: 0,
     nama_kategori = nama_kategori,
     deskripsi_kategori = deskripsi_kategori,
 
@@ -42,7 +42,7 @@ fun Kategori.toUiStateKategori(): InsertUiStateKategori = InsertUiStateKategori(
 )
 
 fun Kategori.toInsertUiEventKategori(): InsertUiEventKategori = InsertUiEventKategori(
-    id_kategori = id_kategori,
+    id_kategori = id_kategori ,
     nama_kategori = nama_kategori,
     deskripsi_kategori = deskripsi_kategori,
 
@@ -53,7 +53,7 @@ data class InsertUiStateKategori(
 )
 
 data class InsertUiEventKategori(
-    val id_kategori: String = "",
+    val id_kategori: Int? = null,
     val nama_kategori: String = "",
     val deskripsi_kategori: String = "",
 

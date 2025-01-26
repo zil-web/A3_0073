@@ -84,3 +84,29 @@ object DestinasiUpdatePemasok: DestinasiNavigasi{
     const val ID_pemasok = "idpemasok"
     val routesWithArg = "$route/{$ID_pemasok}"
 }
+
+//merk
+object DestinasiDetailMerk: DestinasiNavigasi {
+    override val route = "detail_merk"
+    override val titleRes = "DetailMerk"
+    const val ID_merk = "idmerk"
+    val routesWithArg = "$route/{$ID_merk}"
+}
+
+object DestinasiHomeMerk: DestinasiNavigasi {
+    override val route = "homeMerk"
+    override val titleRes= "HomeMerk"
+}
+
+object DestinasiEntryMerk: DestinasiNavigasi{
+    override val route = "item_entrymerk"
+    override val titleRes= "Entrymerk"
+}
+
+object DestinasiUpdateMerk: DestinasiNavigasi{
+    override val route = "updatemerk"
+    override val titleRes = "Updatemerk"
+    const val ID_merk = "idmerk"
+    val routesWithArg = "$route/{$ID_merk}"
+
+}

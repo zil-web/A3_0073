@@ -14,7 +14,7 @@ import com.example.uaspam.ui.ViewModelKategori.UpdateViewModelKategori
 object PenyediaViewModel {
     val Factory = viewModelFactory {
         initializer { HomeViewModel(prdkApp().container.produkRepository) }
-        initializer { InsertViewModel(prdkApp().container.produkRepository) }
+        initializer { InsertViewModel(prdkApp().container.produkRepository,prdkApp().container.pemasokRepository,prdkApp().container.kategoriRepository,prdkApp().container.merkRepository) }
         initializer { DetailViewModel(createSavedStateHandle(),prdkApp().container.produkRepository)}
         initializer { UpdateViewModel(createSavedStateHandle(),prdkApp().container.produkRepository)}
 

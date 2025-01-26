@@ -13,12 +13,12 @@ data class Merk (
 data class merkResponse(
     val status: Boolean,
     val message: String,
-    val data: List<Kategori>
+    val data: List<Merk>
 )
 
 @Serializable
 data class merkResponseDetail(
     val status: Boolean,
     val message: String,
-    val data: Kategori
+    val data: Merk
 )

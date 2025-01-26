@@ -1,4 +1,4 @@
-package com.example.uaspam.ui.View
+package com.example.uaspam.ui.Viewmerk
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,32 +23,30 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.uaspam.model.Produk
+import com.example.uaspam.model.Merk
 import com.example.uaspam.ui.Customwidget.CustomTopAppBar
-import com.example.uaspam.ui.Navigation.DestinasiDetail
-import com.example.uaspam.ui.ViewModel.DetailUiState
-import com.example.uaspam.ui.ViewModel.DetailViewModel
+import com.example.uaspam.ui.Navigation.DestinasiDetailMerk
 import com.example.uaspam.ui.ViewModel.PenyediaViewModel
-
-
+import com.example.uaspam.ui.ViewmodelMerk.DetailUiStateMerk
+import com.example.uaspam.ui.ViewmodelMerk.DetailViewModelMerk
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
+fun DetailScreenMerk(
     navigateBack: () -> Unit,
     onEditClick: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: DetailViewModel = viewModel(factory = PenyediaViewModel.Factory)
+    viewModel: DetailViewModelMerk = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     Scaffold(
         topBar = {
             CustomTopAppBar(
-                title = DestinasiDetail.titleRes,
+                title = DestinasiDetailMerk.titleRes,
                 canNavigateBack = true,
                 navigateUp = navigateBack,
                 onRefresh = {
-                    viewModel.getprodukbyid_produk()
+                    viewModel.getmerkbyid_merk()
                 }
             )
         },
@@ -65,25 +63,25 @@ fun DetailScreen(
             }
         }
     ) { innerPadding ->
-        DetailStatus(
+        DetailStatusMerk(
             modifier = Modifier.padding(innerPadding),
-            detailUiState = viewModel.produkDetailState,
-            retryAction = { viewModel.getprodukbyid_produk() }
+            detailUiStateMerk = viewModel.merkDetailState,
+            retryAction = { viewModel.getmerkbyid_merk() }
         )
     }
 }
 
 @Composable
-fun DetailStatus(
+fun DetailStatusMerk(
     retryAction: () -> Unit,
     modifier: Modifier = Modifier,
-    detailUiState: DetailUiState
+    detailUiStateMerk: DetailUiStateMerk
 ) {
-    when (detailUiState) {
-        is DetailUiState.Loading -> OnLoading(modifier = modifier.fillMaxSize())
+    when (detailUiStateMerk) {
+        is DetailUiStateMerk.Loading -> OnloadingMerk(modifier = modifier.fillMaxSize())
 
-        is DetailUiState.Success -> {
-            if (detailUiState.produk.data.id_produk == 0) {
+        is DetailUiStateMerk.Success -> {
+            if (detailUiStateMerk.merk.data.id_merk == 0) {
                 Box(
                     modifier = modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
@@ -91,21 +89,22 @@ fun DetailStatus(
                     Text("Data tidak ditemukan.")
                 }
             } else {
-                ItemDetailprdk(
-                    produk = detailUiState.produk.data,
+                ItemDetailmrk(
+                    merk = detailUiStateMerk.merk.data,
                     modifier = modifier.fillMaxWidth()
                 )
             }
         }
 
-        is DetailUiState.Error -> OnError(retryAction , modifier = modifier.fillMaxSize())
+        is DetailUiStateMerk.Error -> onErrorMerk(retryAction , modifier = modifier.fillMaxSize())
     }
 }
 
 @Composable
-fun ItemDetailprdk(
+fun ItemDetailmrk(
     modifier: Modifier = Modifier,
-    produk: Produk) {
+    merk: Merk
+) {
     Card(
         modifier = modifier.padding(16.dp),
         shape = MaterialTheme.shapes.medium,
@@ -114,22 +113,18 @@ fun ItemDetailprdk(
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            ComponentDetailMhs(judul = "id_produk", isinya = produk.id_produk.toString())
-            ComponentDetailMhs(judul = "nama_produk", isinya = produk.nama_produk)
-            ComponentDetailMhs(judul = "deskripsi_produk", isinya = produk.deskripsi_produk)
-            ComponentDetailMhs(judul = "harga", isinya = produk.harga.toString())
-            ComponentDetailMhs(judul = "stok", isinya = produk.stok.toString())
-            ComponentDetailMhs(judul = "id_kategori", isinya = produk.id_kategori.toString())
-            ComponentDetailMhs(judul = "id_pemasok", isinya = produk.id_pemasok.toString())
-            ComponentDetailMhs(judul = "id_merk", isinya = produk.id_merk.toString())
+            ComponentDetailMrk(judul = "id_merk", isinya = merk.id_merk.toString())
+            ComponentDetailMrk(judul = "nama_merk", isinya = merk.nama_merk)
+            ComponentDetailMrk(judul = "deskripsi_merk", isinya = merk.deskripsi_merk)
+
 
         }
     }
 }
 
 @Composable
-fun ComponentDetailMhs(
-    modifier: Modifier =Modifier,
+fun ComponentDetailMrk(
+    modifier: Modifier = Modifier,
     judul: String,
     isinya: String,
 ){

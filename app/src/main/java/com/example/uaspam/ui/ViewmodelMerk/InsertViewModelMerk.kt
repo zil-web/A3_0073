@@ -30,7 +30,7 @@ class InsertViewModelMerk(private val mrk: MerkRepository): ViewModel() {
 }
 
 fun InsertUiEventMerk.tomrk(): Merk = Merk(
-    id_merk = id_merk,
+    id_merk = id_merk ?: 0,
     nama_merk = nama_merk,
     deskripsi_merk = deskripsi_merk,
 
@@ -53,7 +53,7 @@ data class InsertUiStateMerk(
 )
 
 data class InsertUiEventMerk(
-    val id_merk: String = "",
+    val id_merk: Int? = null,
     val nama_merk: String = "",
     val deskripsi_merk: String = "",
 

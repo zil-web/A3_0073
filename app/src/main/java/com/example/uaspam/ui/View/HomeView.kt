@@ -54,8 +54,9 @@ import com.example.uaspam.ui.ViewModel.PenyediaViewModel
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
-    onNavigateToPemasok: () -> Unit,
+    onNavigateToPemasok: () -> Unit,  // Tambahkan fungsi untuk navigasi ke pemasok
     onNavigateToKategori: () -> Unit, // Tambahkan fungsi untuk navigasi ke kategori
+    onNavigateToMerk: () -> Unit, // Tambahkan fungsi untuk navigasi ke merk
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -100,6 +101,12 @@ fun HomeScreen(
             ) {
                 Text("Go to Kategori Page")
             }
+            Button(
+                onClick = onNavigateToMerk,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
+            ) {
+                Text("Go to Merk Page")
+            }
 
             // Konten HomeStatus
             HomeStatus(
@@ -108,7 +115,7 @@ fun HomeScreen(
                 modifier = Modifier.fillMaxSize(),
                 onDetailClick = onDetailClick,
                 onDeleteClick = {
-                    viewModel.deleteprdk(it.id_produk)
+                    viewModel.deleteprdk(it.id_produk.toString())
                     viewModel.getprdk()
                 }
             )
@@ -136,7 +143,7 @@ fun HomeStatus(
                 PrdkLayout(
                     produk = homeUiState.produk, modifier = modifier.fillMaxWidth(),
                     onDetailClick = {
-                        onDetailClick(it.id_produk)
+                        onDetailClick(it.id_produk.toString())
                     },
                     onDeleteClick = {
                         onDeleteClick(it)
