@@ -27,7 +27,7 @@ class DetailViewModelPemasok(
     var pemasokDetailState: DetailUiStatePemasok by mutableStateOf(DetailUiStatePemasok.Loading)
         private set
 
-    private val _id_pemasok: String = checkNotNull(savedStateHandle[DestinasiDetailPemasok.ID_pemasok])
+    private val _id_pemasok: Int = checkNotNull(savedStateHandle[DestinasiDetailPemasok.ID_pemasok])
 
     init {
         getpemasokbyid_pemasok()
