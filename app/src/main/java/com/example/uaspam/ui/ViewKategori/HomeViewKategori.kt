@@ -49,6 +49,7 @@ import com.example.uaspam.ui.ViewModelKategori.HomeViewModelKategori
 @Composable
 fun HomeScreenKategori(
     navigateToItemEntry: () -> Unit,
+    navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
     viewModel: HomeViewModelKategori = viewModel(factory = PenyediaViewModel.Factory)
@@ -59,7 +60,8 @@ fun HomeScreenKategori(
         topBar = {
             CustomTopAppBar(
                 title = DestinasiHomeKategori.titleRes,
-                canNavigateBack = false,
+                canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getktgr()
@@ -80,14 +82,7 @@ fun HomeScreenKategori(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            Button(
-                onClick = navigateToItemEntry,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text("Tambah Kategori")
-            }
+
             HomeStatusKategori(
                 homeUiStateKategori = viewModel.ktgrUiState,
                 retryAction = { viewModel.getktgr() },
@@ -108,6 +103,7 @@ fun HomeScreenKategori(
 fun HomeStatusKategori(
     homeUiStateKategori: HomeUiStateKategori,
     retryAction: () -> Unit,
+
     modifier: Modifier = Modifier,
     onDeleteClick: (Kategori) -> Unit = {},
     onDetailClick: (String) -> Unit = {}

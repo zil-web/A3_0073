@@ -55,6 +55,7 @@ fun HomeScreenPemasok(
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
+    navigateBack: () -> Unit,
     viewModel: HomeViewModelPemasok = viewModel(factory = PenyediaViewModel.Factory)
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
@@ -63,7 +64,8 @@ fun HomeScreenPemasok(
         topBar = {
             CustomTopAppBar(
                 title = DestinasiHomePemasok.titleRes,
-                canNavigateBack = false,
+                navigateUp = navigateBack,
+                canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 onRefresh = {
                     viewModel.getpmsk()
@@ -84,14 +86,7 @@ fun HomeScreenPemasok(
         }
     ) { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
-            Button(
-                onClick = navigateToItemEntry,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp)
-            ) {
-                Text("Tambah Pemasok")
-            }
+
             HomeStatusPemasok(
                 homeUiStatePemasok = viewModel.pmskUiState,
                 retryAction = { viewModel.getpmsk() },

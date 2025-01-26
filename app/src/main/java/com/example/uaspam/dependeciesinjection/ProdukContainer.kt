@@ -28,7 +28,7 @@ class ProdukContainer : AppContainer {
 
     private val baseUrlproduk = "http://10.0.2.2:3000/api/produk/"
     private val baseUrlpemasok = "http://10.0.2.2:3000/api/pemasok/"
-    private val baseUrlkategori = "http://10.0.2.2:3000/api/pemasok/"
+    private val baseUrlkategori = "http://10.0.2.2:3000/api/kategori/"
 
 
     private val retrofitproduk: Retrofit = Retrofit.Builder()
@@ -46,25 +46,28 @@ class ProdukContainer : AppContainer {
         .baseUrl(baseUrlkategori)
         .build()
 
+
     private val produkService: ProdukService by lazy {
         retrofitproduk.create(ProdukService::class.java) // Nama benar
     }
-
     override val produkRepository: ProdukRepository by lazy {
         NetworkprodukRepository(produkService)
     }
 
+
+
+
     private val pemasokService: PemasokService by lazy {
         retrofitpemasok.create(PemasokService::class.java) // Nama benar
     }
-
     override val pemasokRepository: PemasokRepository by lazy {
         NetworkpemasokRepository(pemasokService)
     }
 
+
+
     private val kategoriService: KategoriService by lazy {
         retrofitkategori.create(KategoriService::class.java) // Nama benar
-
     }
     override val kategoriRepository: KategoriRepository by lazy {
         NetworkkategoriRepository(kategoriService)
