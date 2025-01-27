@@ -196,7 +196,7 @@ fun FormInput(
                 onValueChangedEvent = {id_kategori->
                     val selectedKategori = ktgrList.find { it.nama_kategori == id_kategori}
                     selectedKategori?.let {
-                        onValueChange(insertUiEvent.copy(id_pemasok = it.id_kategori)) }
+                        onValueChange(insertUiEvent.copy(id_kategori = it.id_kategori)) }
                 }
             )
 
