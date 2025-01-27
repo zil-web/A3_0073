@@ -205,8 +205,7 @@ fun PrdkLayout(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable { onDetailClick(produk) },
-                onDeleteClick = {
-                }
+                onDeleteClick = { onDeleteClick(produk) }
             )
         }
     }
