@@ -47,6 +47,9 @@ fun UpdateScreen(
             modifier = Modifier.padding(padding),
             insertUiState = viewModel.updateUiState,
             onSiswaValueChange = viewModel::updateInsertprdkState,
+            pmskList = viewModel.pmskList,
+            ktgrList = viewModel.ktgrList,
+            mrkList = viewModel.mrkList,
             onSaveClick = {
                 coroutineScope.launch {
                     viewModel.updateprdk()
