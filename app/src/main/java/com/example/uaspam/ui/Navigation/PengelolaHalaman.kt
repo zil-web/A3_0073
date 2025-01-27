@@ -15,10 +15,15 @@ import com.example.uaspam.ui.View.EntryprdkScreen
 import com.example.uaspam.ui.View.HomeScreen
 import com.example.uaspam.ui.View.HomeScreenPemasok
 import com.example.uaspam.ui.View.UpdateScreen
+import com.example.uaspam.ui.View.UpdateScreenPemasok
 import com.example.uaspam.ui.ViewKategori.DetailScreenKategori
 import com.example.uaspam.ui.ViewKategori.EntryktgrScreen
 import com.example.uaspam.ui.ViewKategori.HomeScreenKategori
 import com.example.uaspam.ui.ViewKategori.UpdateScreenKategori
+import com.example.uaspam.ui.Viewmerk.DetailScreenMerk
+import com.example.uaspam.ui.Viewmerk.EntrymrkScreen
+import com.example.uaspam.ui.Viewmerk.HomeScreenMerk
+import com.example.uaspam.ui.Viewmerk.UpdateScreenMerk
 
 @Composable
 fun PengelolaHalaman(
@@ -104,17 +109,12 @@ fun PengelolaHalaman(
         }
 
 
-        composable(
-            DestinasiHomePemasok.route
-        ) {
-            HomeScreenPemasok(
-                navigateToItemEntry = { navController.navigate(DestinasiEntryPemasok.route) },
-                onDetailClick = { id_pemasok ->
-                    navController.navigate("${DestinasiDetailPemasok.route}/$id_pemasok")
-                },
-                navigateBack = { navController.navigate(DestinasiHome.route) }
-            )
-        }
+
+
+
+
+        ///pengelolaan halaman kategori
+
         composable(
             DestinasiHomeKategori.route
         ) {
@@ -126,6 +126,7 @@ fun PengelolaHalaman(
                 navigateBack = { navController.navigate(DestinasiHome.route) }
             )
         }
+
         composable(
             DestinasiEntryKategori.route
         ) {
@@ -182,6 +183,21 @@ fun PengelolaHalaman(
             }
         }
 
+
+        ///pengelola halaman pemasok
+
+        composable(
+            DestinasiHomePemasok.route
+        ) {
+            HomeScreenPemasok(
+                navigateToItemEntry = { navController.navigate(DestinasiEntryPemasok.route) },
+                onDetailClick = { id_pemasok ->
+                    navController.navigate("${DestinasiDetailPemasok.route}/$id_pemasok")
+                },
+                navigateBack = { navController.navigate(DestinasiHome.route) }
+            )
+        }
+
         composable(
             DestinasiEntryPemasok.route
         ) {
@@ -231,13 +247,82 @@ fun PengelolaHalaman(
         ) {
             val id_pemasok = it.arguments?.getString(DestinasiUpdatePemasok.ID_pemasok)
             id_pemasok?.let { id_pemasok ->
-                UpdateScreenKategori(
+                UpdateScreenPemasok(
                     onBack = {navController.popBackStack()},
                     onNavigate = {navController.popBackStack()}
                 )
             }
         }
 
+        ///pengelolaan halaman merk
+
+        composable(
+            DestinasiHomeMerk.route
+        ) {
+            HomeScreenMerk(
+                navigateToItemEntry = { navController.navigate(DestinasiEntryMerk.route) },
+                onDetailClick = { id_merk ->
+                    navController.navigate("${DestinasiDetailMerk.route}/$id_merk")
+                },
+                navigateBack = { navController.navigate(DestinasiHome.route) }
+            )
+        }
+
+        composable(
+            DestinasiEntryMerk.route
+        ) {
+            EntrymrkScreen(
+                navigateBack = {
+                    navController.navigate(DestinasiHomeMerk.route){
+                        popUpTo(DestinasiHomeMerk.route) {
+                            inclusive = true
+                        }
+                    }
+                }
+            )
+        }
+
+        composable(
+            DestinasiDetailMerk.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiDetailMerk.ID_merk){
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val id_merk = it.arguments?.getString(DestinasiDetailMerk.ID_merk)
+            id_merk?.let {
+                DetailScreenMerk(
+                    navigateBack = {
+                        navController.navigate(DestinasiHomeMerk.route) {
+                            popUpTo(DestinasiHomeMerk.route) {
+                                inclusive = true
+                            }
+                        }
+                    },
+                    onEditClick =  {
+                        navController.navigate("${DestinasiUpdateMerk.route}/$id_merk")
+                    },
+                )
+            }
+        }
+
+        composable(
+            DestinasiUpdateMerk.routesWithArg,
+            arguments = listOf(
+                navArgument(DestinasiUpdateMerk.ID_merk) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val id_merk = it.arguments?.getString(DestinasiUpdateMerk.ID_merk)
+            id_merk?.let { id_merk ->
+                UpdateScreenMerk(
+                    onBack = {navController.popBackStack()},
+                    onNavigate = {navController.popBackStack()}
+                )
+            }
+        }
     }
 }
 
