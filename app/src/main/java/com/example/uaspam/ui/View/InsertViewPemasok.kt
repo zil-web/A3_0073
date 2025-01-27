@@ -114,17 +114,17 @@ fun FormInputPemasok(
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             OutlinedTextField(
-                value = InsertUiEventPemasok.id_pemasok?.toString() ?: "",
-                onValueChange = { onValueChange(InsertUiEventPemasok.copy(id_pemasok = it.toIntOrNull()))},
-                label = { Text(text = "id_pemasok") },
+                value = InsertUiEventPemasok.nama_produk,
+                onValueChange = { onValueChange(InsertUiEventPemasok.copy(nama_produk = it))},
+                label = { Text(text = "nama_produk") },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = enabled,
                 singleLine = true
             )
             OutlinedTextField(
-                value = InsertUiEventPemasok.nama_produk,
-                onValueChange = { onValueChange(InsertUiEventPemasok.copy(nama_produk = it)) },
-                label = { Text(text = " nama_produk") },
+                value = InsertUiEventPemasok.nama_pemasok,
+                onValueChange = { onValueChange(InsertUiEventPemasok.copy(nama_pemasok = it)) },
+                label = { Text(text = " nama_pemasok") },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = enabled,
                 singleLine = true
@@ -132,7 +132,7 @@ fun FormInputPemasok(
             OutlinedTextField(
                 value = InsertUiEventPemasok.alamat_pemasok,
                 onValueChange = { onValueChange(InsertUiEventPemasok.copy(alamat_pemasok = it)) },
-                label = { Text(text = "alamat_pemasok") },
+                label = { Text(text = " alamat_pemasok") },
                 modifier = Modifier.fillMaxWidth(),
                 enabled = enabled,
                 singleLine = true
@@ -145,6 +145,7 @@ fun FormInputPemasok(
                 enabled = enabled,
                 singleLine = true
             )
+
         }
 
       
