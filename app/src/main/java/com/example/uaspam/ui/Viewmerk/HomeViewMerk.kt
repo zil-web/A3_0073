@@ -17,6 +17,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -27,8 +28,13 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -40,6 +46,7 @@ import com.example.uaspam.R
 import com.example.uaspam.model.Merk
 import com.example.uaspam.ui.Customwidget.CustomTopAppBar
 import com.example.uaspam.ui.Navigation.DestinasiHomeMerk
+import com.example.uaspam.ui.View.PrdkLayout
 import com.example.uaspam.ui.ViewModel.PenyediaViewModel
 import com.example.uaspam.ui.ViewmodelMerk.HomeUiStateMerk
 import com.example.uaspam.ui.ViewmodelMerk.HomeViewModelMerk
@@ -116,14 +123,13 @@ fun HomeStatusMerk(
                     Text(text = "Tidak ada data Merk")
                 }
             }else{
-                mrkLayout(
-                    merk = homeUiStateMerk.merk,
-                    modifier = modifier.fillMaxWidth(),
-                    onDeleteClick = {
-                        onDeleteClick(it)
-                    },
+                mrkLayout (
+                    merk = homeUiStateMerk.merk, modifier = modifier.fillMaxWidth(),
                     onDetailClick = {
                         onDetailClick(it.id_merk.toString())
+                    },
+                    onDeleteClick = {
+                        onDeleteClick(it)
                     }
                 )
             }
@@ -195,6 +201,20 @@ fun mrkCard(
     modifier: Modifier = Modifier,
     onDeleteClick: (Merk) -> Unit = {}
 ) {
+    var showDialog by remember { mutableStateOf(false) }
+
+    if (showDialog) {
+        DeleteConfirmationDialogmrk(
+            onDeleteConfirm = {
+                showDialog = false
+                onDeleteClick(merk)
+            },
+            onDeleteCancel = {
+                showDialog = false
+            }
+        )
+    }
+
     Card(
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
@@ -209,7 +229,7 @@ fun mrkCard(
                 verticalAlignment = Alignment.CenterVertically
             ){
                 Text(
-                    text = merk.id_merk?.toString() ?: "N/A",
+                    text = merk.nama_merk,
                     style = MaterialTheme.typography.titleLarge)
                 Spacer(Modifier.weight(1f))
                 IconButton(onClick = { onDeleteClick(merk) }) {
@@ -219,15 +239,34 @@ fun mrkCard(
                     )
                 }
                 Text(
-                    text = merk.nama_merk,
+                    text = merk.deskripsi_merk,
                     style = MaterialTheme.typography.titleMedium
                 )
             }
-            Text(
-                text = merk.deskripsi_merk?.toString() ?: "N/A",
-                style = MaterialTheme.typography.titleMedium
-            )
+
         }
 
     }
+}
+
+@Composable
+private fun DeleteConfirmationDialogmrk(
+    onDeleteConfirm: () -> Unit,
+    onDeleteCancel: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(onDismissRequest = { /*Do nothing*/ },
+        title = { Text("Delete Data") },
+        text = { Text("Apakah anda yakin ingin menghapus data?") },
+        dismissButton = {
+            TextButton(onClick = { onDeleteCancel() }) {
+                Text(text = "Cancel")
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = { onDeleteConfirm() }) {
+                Text(text = "Yes")
+            }
+        }
+    )
 }
