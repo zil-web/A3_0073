@@ -222,7 +222,7 @@ fun pmskCard(
     Card(
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
-        elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)) // Warna kuning terang
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
