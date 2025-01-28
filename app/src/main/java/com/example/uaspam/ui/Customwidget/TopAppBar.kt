@@ -42,8 +42,8 @@ fun CustomTopAppBar(
                     painter = painterResource(id = R.drawable.s), // Logo
                     contentDescription = "Logo",
                     modifier = Modifier
-                        .size(40.dp) // Ukuran logo
-                        .padding(end = 8.dp) // Spasi antara logo dan teks
+                        .size(80.dp) // Ukuran logo
+                        .padding(end = 35.dp) // Spasi antara logo dan teks
                 )
                 Text(title) // Teks judul
             }
