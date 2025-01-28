@@ -43,6 +43,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uaspam.R
 import com.example.uaspam.model.Produk
+import com.example.uaspam.ui.Customwidget.CustomButton
 import com.example.uaspam.ui.Customwidget.CustomTopAppBar
 import com.example.uaspam.ui.Navigation.DestinasiHome
 import com.example.uaspam.ui.ViewModel.HomeUiState
@@ -54,9 +55,9 @@ import com.example.uaspam.ui.ViewModel.PenyediaViewModel
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
-    onNavigateToPemasok: () -> Unit,  // Tambahkan fungsi untuk navigasi ke pemasok
-    onNavigateToKategori: () -> Unit, // Tambahkan fungsi untuk navigasi ke kategori
-    onNavigateToMerk: () -> Unit, // Tambahkan fungsi untuk navigasi ke merk
+    onNavigateToPemasok: () -> Unit,
+    onNavigateToKategori: () -> Unit,
+    onNavigateToMerk: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -87,28 +88,31 @@ fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Tambahkan Button untuk navigasi ke Pemasok
-            Button(
-                onClick = onNavigateToPemasok,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
-            ) {
-                Text("Go to Pemasok Page")
-            }
-            // Tambahkan Button untuk navigasi ke Kategori
-            Button(
-                onClick = onNavigateToKategori,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
-            ) {
-                Text("Go to Kategori Page")
-            }
-            Button(
-                onClick = onNavigateToMerk,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp)
-            ) {
-                Text("Go to Merk Page")
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ){
+                CustomButton(
+                    text = "Pemasok", // Berikan teks langsung
+                    onClick = onNavigateToPemasok,
+                    modifier = Modifier.weight(1f)
+                )
+                CustomButton(
+                    text = "Kategori",
+                    onClick = onNavigateToKategori,
+                    modifier = Modifier.weight(1f)
+                )
+                CustomButton(
+                    text = "Merk",
+                    onClick = onNavigateToMerk,
+                    modifier = Modifier.weight(1f)
+                )
             }
 
-            // Konten HomeStatus
+
             HomeStatus(
                 homeUiState = viewModel.prdkUiState,
                 retryAction = { viewModel.getprdk() },
@@ -235,7 +239,7 @@ fun PrdkCard(
         modifier = modifier,
         shape = MaterialTheme.shapes.medium,
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)) // Warna kuning terang
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -271,7 +275,7 @@ fun PrdkCard(
                 Icon(
                     imageVector = Icons.Default.ShoppingCart, // Ikon keranjang bawaan
                     contentDescription = "Keranjang",
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(80.dp)
                 )
 
             }
