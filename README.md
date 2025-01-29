@@ -1,0 +1,8 @@
+![gambar](https://github.com/user-attachments/assets/e097b421-9f99-4182-9333-1b2d38e2c985)
+![gambar](https://github.com/user-attachments/assets/9f0d4650-8074-4caa-a55f-d326b78d703d)
+![gambar](https://github.com/user-attachments/assets/815a570b-bd15-471b-badb-757363e0eb49)
+![gambar](https://github.com/user-attachments/assets/18d5f15f-64e6-4abf-bd5d-54ffda731720)
+![gambar](https://github.com/user-attachments/assets/f4578d60-2c65-43be-84b1-9770f657e414)
+![gambar](https://github.com/user-attachments/assets/f3d28a20-6458-40b7-b71a-335cfb5d6fe9)
+![gambar](https://github.com/user-attachments/assets/ae984116-6785-4f2b-8f58-e918dc4a2077)
+![gambar](https://github.com/user-attachments/assets/d977dd03-d94c-46e9-b80f-ead0d79ad4b6)
