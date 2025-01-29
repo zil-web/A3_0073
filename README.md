@@ -6,3 +6,4 @@
 ![gambar](https://github.com/user-attachments/assets/f3d28a20-6458-40b7-b71a-335cfb5d6fe9)
 ![gambar](https://github.com/user-attachments/assets/ae984116-6785-4f2b-8f58-e918dc4a2077)
 ![gambar](https://github.com/user-attachments/assets/d977dd03-d94c-46e9-b80f-ead0d79ad4b6)
+![gambar](https://github.com/user-attachments/assets/0063e68f-b1ed-459b-8e29-20baed093de1)
